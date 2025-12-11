@@ -1,0 +1,37 @@
+# Window Crank Project - Libraries
+
+This directory is intended for project-specific libraries for the Window Crank servo control system.
+
+## Current Libraries
+
+This project currently uses external libraries managed by PlatformIO:
+
+- **U8g2** - OLED display library for SSD1306 128x64 displays
+- **Arduino ESP32** - Core framework for ESP32 development
+
+## Custom Libraries
+
+Project-specific classes are located in the `src/` and `include/` directories:
+
+- **Servo** - ESP32 LEDC PWM servo control
+- **Display** - OLED display interface for system status
+
+## Adding Libraries
+
+To add project-specific libraries, create subdirectories here:
+
+```
+lib/
+├── YourLibrary/
+│   ├── src/
+│   │   ├── YourLibrary.cpp
+│   │   └── YourLibrary.h
+│   └── library.json
+└── README
+```
+
+## Author
+
+Michael Garcia, M&E Design  
+Contact: michael@mandedesign.studio  
+Website: www.mandedesign.studio

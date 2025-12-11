@@ -1,0 +1,44 @@
+# Window Crank Project - Testing
+
+This directory is intended for PlatformIO Test Runner and project tests for the Window Crank servo control system.
+
+## Test Structure
+
+Unit tests for the Window Crank project components:
+
+- **Servo Tests** - Validate LEDC PWM servo control functionality
+- **Display Tests** - Test OLED display rendering and updates
+- **Integration Tests** - End-to-end system behavior validation
+
+## Running Tests
+
+Execute tests using PlatformIO:
+
+```bash
+pio test
+```
+
+## Test Environment
+
+Tests are designed for:
+- ESP32 microcontroller
+- Native environment for logic testing
+- Hardware-in-the-loop testing capabilities
+
+## Coverage Areas
+
+- Servo pulse width calculations
+- Display update cycles
+- Button debouncing logic
+- Position state management
+
+## Author
+
+Michael Garcia, M&E Design  
+Contact: michael@mandedesign.studio  
+Website: www.mandedesign.studio
+
+## More Information
+
+PlatformIO Unit Testing Documentation:
+- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html

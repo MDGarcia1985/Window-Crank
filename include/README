@@ -1,0 +1,31 @@
+# Window Crank Project - Header Files
+
+This directory contains the header files for the Window Crank servo control system.
+
+## Files
+
+### Servo.h
+ESP32 servo control interface using LEDC PWM peripheral. Provides precise microsecond pulse width control for standard servo motors.
+
+### display.h
+OLED display interface for SSD1306 128x64 displays. Shows real-time servo position, pulse width, and button status using U8g2 library.
+
+## Usage
+
+Include headers in your source files:
+
+```cpp
+#include "Servo.h"
+#include "display.h"
+```
+
+## Dependencies
+
+- Arduino.h (ESP32 core)
+- U8g2lib.h (OLED display library)
+
+## Author
+
+Michael Garcia, M&E Design  
+Contact: michael@mandedesign.studio  
+Website: www.mandedesign.studio
