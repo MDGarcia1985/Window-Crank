@@ -1,6 +1,6 @@
 # Window Crank Servo Control System
 
-ESP32-based window crank controller with three-position servo control and OLED status display.
+ESP32-based window crank controller with three-position servo control, OLED notification display, and Flutter app integration via BLE.
 
 ## Hardware Requirements
 
@@ -30,7 +30,8 @@ GND       | All GND          | Common ground
 
 - **Three Position Control**: 0°, 90°, 180° servo positions
 - **Button Cycling**: Press to advance through positions
-- **OLED Display**: Real-time position and pulse width display
+- **BLE Integration**: Wireless communication with Flutter mobile app
+- **Notification Display**: Shows sender, time, and message preview on OLED
 - **Status LED**: Visual feedback during operation
 - **Hardware PWM**: ESP32 LEDC peripheral for precise timing
 
@@ -39,12 +40,18 @@ GND       | All GND          | Common ground
 ```
 Window Crank/
 ├── src/
-│   ├── main.cpp          # Main application
-│   ├── Servo.cpp         # Servo control implementation
-│   └── display.cpp       # OLED display implementation
+│   ├── main.cpp          # Main ESP32 application
+│   ├── servo.cpp         # Servo control implementation
+│   ├── display.cpp       # OLED display implementation
+│   └── bleComm.cpp       # BLE communication
 ├── include/
-│   ├── Servo.h           # Servo control interface
-│   └── display.h         # Display interface
+│   ├── servo.h           # Servo control interface
+│   ├── display.h         # Display interface
+│   └── bleComm.h         # BLE interface
+├── flutter_app/
+│   ├── lib/main.dart     # Flutter mobile app
+│   ├── pubspec.yaml      # Flutter dependencies
+│   └── README.md         # App documentation
 ├── lib/                  # External libraries
 ├── test/                 # Unit tests
 └── platformio.ini        # Build configuration
@@ -57,22 +64,31 @@ Add to `platformio.ini`:
 ```ini
 lib_deps = 
     olikraus/U8g2@^2.34.22
+    h2zero/NimBLE-Arduino@^1.4.0
 ```
 
 ## Operation
 
+### Manual Control
 1. **Power On**: System initializes to position 0° (1000μs pulse)
 2. **Button Press**: Cycles through positions (0° → 90° → 180° → 0°)
-3. **Display**: Shows current position, pulse width, and button status
-4. **LED**: Illuminates during position changes
+3. **LED**: Illuminates during position changes
+
+### BLE Integration
+1. **Pairing**: Connect Flutter app to "WindowCrank" BLE device
+2. **Remote Control**: App can send position commands (0, 1, 2)
+3. **Notifications**: App sends notification data for OLED display
+4. **Display Modes**: Toggle between servo status and notification view
 
 ## Technical Specifications
 
 - **PWM Frequency**: 50Hz (standard servo)
 - **Pulse Width Range**: 1000-2000μs
 - **Resolution**: 16-bit (65535 steps)
+- **BLE Protocol**: NimBLE stack
 - **Display Update**: Real-time
 - **Debounce Delay**: 300ms
+- **Notification Storage**: Last 5 messages
 
 ## Author
 

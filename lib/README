@@ -13,8 +13,9 @@ This project currently uses external libraries managed by PlatformIO:
 
 Project-specific classes are located in the `src/` and `include/` directories:
 
-- **Servo** - ESP32 LEDC PWM servo control
-- **Display** - OLED display interface for system status
+- **servo** - ESP32 LEDC PWM servo control
+- **display** - OLED display interface for system status
+- **bleComm** - BLE communication for Flutter app integration
 
 ## Adding Libraries
 

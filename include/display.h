@@ -3,10 +3,11 @@
  * @brief OLED display interface using SSD1306 128x64
  * @version 2.1.0
  * 
- * Displays window crank status including:
+ * Displays window crank status and notifications including:
  * - Current servo position (0°, 90°, 180°)
  * - Position index and microsecond pulse width
  * - Button press status
+ * - Notification data (sender, time, message preview)
  * 
  * Uses I2C communication on ESP32 SDA/SCL pins
  * 
@@ -41,6 +42,22 @@ public:
      * @param buttonPressed Button press state
      */
     void update(int position, int pulseUs, bool buttonPressed);
+    
+    /**
+     * @brief Display notification information
+     * @param sender Notification sender name
+     * @param time Time string (HH:MM format)
+     * @param message Message preview (first line)
+     */
+    void showNotification(const char* sender, const char* time, const char* message);
+    
+    /**
+     * @brief Toggle between servo status and notification display
+     */
+    void toggleMode();
+
+private:
+    bool notificationMode = false;
 
 private:
     /// @brief SSD1306 128x64 OLED driver (hardware I2C, full buffer)

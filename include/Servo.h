@@ -1,5 +1,5 @@
 /**
- * @file Servo.h
+ * @file servo.h
  * @brief ESP32 servo control using LEDC PWM
  * @version 1.0.0
  * 

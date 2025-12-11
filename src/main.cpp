@@ -24,7 +24,7 @@
  */
 
 #include <Arduino.h>
-#include "Servo.h"
+#include "servo.h"
 #include "display.h"
 
 // Pins

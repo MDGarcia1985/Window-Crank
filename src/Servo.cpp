@@ -1,5 +1,5 @@
 /**
- * @file Servo.cpp
+ * @file servo.cpp
  * @brief Implementation of ESP32 servo control
  * @version 1.0.0
  * 
@@ -16,7 +16,7 @@
  * @license MIT License
  */
 
-#include "Servo.h"
+#include "servo.h"
 
 #define FREQ        50
 #define RES_BITS    16

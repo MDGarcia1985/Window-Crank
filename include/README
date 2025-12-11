@@ -4,19 +4,23 @@ This directory contains the header files for the Window Crank servo control syst
 
 ## Files
 
-### Servo.h
+### servo.h
 ESP32 servo control interface using LEDC PWM peripheral. Provides precise microsecond pulse width control for standard servo motors.
 
 ### display.h
 OLED display interface for SSD1306 128x64 displays. Shows real-time servo position, pulse width, and button status using U8g2 library.
+
+### bleComm.h
+BLE communication interface for Flutter app integration. Handles position commands and notification data via NimBLE stack.
 
 ## Usage
 
 Include headers in your source files:
 
 ```cpp
-#include "Servo.h"
+#include "servo.h"
 #include "display.h"
+#include "bleComm.h"
 ```
 
 ## Dependencies
