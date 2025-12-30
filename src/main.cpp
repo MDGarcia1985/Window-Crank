@@ -38,12 +38,14 @@
 
 Servo servo(0, SERVO_PIN);
 Display display;
-ButtonDebounce button(BUTTON_PIN, 50); // 50ms debounce
+ButtonDebounce::Config btnConfig = {10, 8, 2}; // integ_max=10, integ_on=8, integ_off=2
+ButtonDebounce button(btnConfig);
 int idx = 0;
 const int pulses[] = { SERVO_MIN, (SERVO_MIN + SERVO_MAX) / 2, SERVO_MAX };
 
 void setup() 
 {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);
 
@@ -55,7 +57,8 @@ void setup()
 
 void loop() 
 {
-  button.update();
+  bool rawButton = digitalRead(BUTTON_PIN) == LOW;
+  button.update(rawButton);
   
   if (button.pressed()) 
   {
@@ -66,6 +69,6 @@ void loop()
     digitalWrite(LED_PIN, LOW);
   }
   
-  display.update(idx, pulses[idx], button.isPressed());
+  display.update(idx, pulses[idx], button.down());
   delay(20);
 }
