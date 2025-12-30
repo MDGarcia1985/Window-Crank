@@ -26,6 +26,7 @@
 #include <Arduino.h>
 #include "servo.h"
 #include "display.h"
+#include "buttonDebounce.h"
 
 // Pins
 #define SERVO_PIN   15   // servo signal
@@ -37,12 +38,12 @@
 
 Servo servo(0, SERVO_PIN);
 Display display;
+ButtonDebounce button(BUTTON_PIN, 50); // 50ms debounce
 int idx = 0;
 const int pulses[] = { SERVO_MIN, (SERVO_MIN + SERVO_MAX) / 2, SERVO_MAX };
 
 void setup() 
 {
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);
 
@@ -54,19 +55,17 @@ void setup()
 
 void loop() 
 {
-  bool buttonPressed = digitalRead(BUTTON_PIN) == LOW;
+  button.update();
   
-  if (buttonPressed) 
+  if (button.pressed()) 
   {
     digitalWrite(LED_PIN, HIGH);
-    display.update(idx, pulses[idx], true);
     idx = (idx + 1) % 3;
     servo.writeUs(pulses[idx]);
-    delay(300);                 // debounce / move time
+    delay(300);                 // move time
     digitalWrite(LED_PIN, LOW);
-    while (digitalRead(BUTTON_PIN) == LOW) { delay(10); } // wait release
   }
   
-  display.update(idx, pulses[idx], false);
+  display.update(idx, pulses[idx], button.isPressed());
   delay(20);
 }
